@@ -13,12 +13,6 @@ module DataMapper
       def money(name, options = {})
         raise ArgumentError.new('Name must be specified.') if name.empty?
 
-        if default = options.delete(:default)
-          unless default.is_a?(Money)
-            raise TypeError.new("Expected Money but got #{options[:default].class}")
-          end
-        end
-
         property               = DataMapper::Property::Decimal.new(self, name, options)
         name                   = property.name.to_s
         instance_variable_name = property.instance_variable_name
@@ -43,9 +37,6 @@ module DataMapper
 
           #{property.writer_visibility}
           def #{name}=(value)
-            unless value.kind_of?(Money)
-              raise TypeError.new("Expected Money but got \#{value.class}")
-            end
             self.#{name_amount}       = value.amount
             self.#{name_currency}     = value.currency
             #{instance_variable_name} = value
