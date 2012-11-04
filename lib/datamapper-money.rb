@@ -17,12 +17,12 @@ module DataMapper
         property               = DataMapper::Property::Decimal.new(self, name, options)
         name                   = property.name.to_s
         instance_variable_name = property.instance_variable_name
-        name_amount            = "#{name}_amount"
+        name_cents             = "#{name}_cents"
         name_currency          = "#{name}_currency"
 
-        options_amount = options.slice(:required, :precision, :scale).merge(:accessor => :private)
-        options_amount.merge!(:default => default.amount) if default
-        self.property name_amount.to_sym, DataMapper::Property::Decimal, options_amount
+        options_cents = options.slice(:required, :precision, :scale).merge(:accessor => :private)
+        options_cents.merge!(:default => default.cents) if default
+        self.property name_cents.to_sym, DataMapper::Property::Decimal, options_cents
 
         options_currency = options.slice(:required).merge(:accessor => :private, :length => 3)
         options_currency.merge!(:default => default.currency.to_s) if default
@@ -32,13 +32,13 @@ module DataMapper
           #{property.reader_visibility}
           def #{name}
             return #{instance_variable_name} if defined?(#{instance_variable_name})
-            return unless #{name_amount} && #{name_currency}
-            #{instance_variable_name} = Money.new(#{name_amount}, #{name_currency})
+            return unless #{name_cents} && #{name_currency}
+            #{instance_variable_name} = Money.new(#{name_cents}, #{name_currency})
           end
 
           #{property.writer_visibility}
           def #{name}=(value)
-            self.#{name_amount}       = value.amount
+            self.#{name_cents}        = value.cents
             self.#{name_currency}     = value.currency
             #{instance_variable_name} = value
           end
