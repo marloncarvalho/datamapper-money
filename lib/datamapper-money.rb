@@ -25,11 +25,11 @@ module DataMapper
         name_amount            = "#{name}_amount"
         name_currency          = "#{name}_currency"
 
-        options_amount = options.only(:required, :precision, :scale).merge(:accessor => :private)
+        options_amount = options.slice(:required, :precision, :scale).merge(:accessor => :private)
         options_amount.merge!(:default => default.amount) if default
         self.property name_amount.to_sym, DataMapper::Property::Decimal, options_amount
 
-        options_currency = options.only(:required).merge(:accessor => :private, :length => 3)
+        options_currency = options.slice(:required).merge(:accessor => :private, :length => 3)
         options_currency.merge!(:default => default.currency.to_s) if default
         self.property name_currency.to_sym, DataMapper::Property::String, options_currency
 
