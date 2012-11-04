@@ -1,6 +1,6 @@
 # datamapper-money
 
-DataMapper-enabled use of 'money' rubygem.
+Adds a 'money' instance method to DataMapper-based models, for creating properties powered by the 'money' rubygem.
 
 ## Installation
 

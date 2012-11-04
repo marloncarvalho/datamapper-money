@@ -9,6 +9,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Smudge"]
   gem.email         = ["nathan@ngriffith.com"]
   gem.summary       = %q{DataMapper-enabled use of 'money' rubygem.}
+  gem.description   = %q{Adds a 'money' instance method to DataMapper-based models, for creating properties powered by the 'money' rubygem.}
   gem.homepage      = "http://github.com/Smudge/datamapper-money"
 
   gem.files         = `git ls-files`.split($/)
