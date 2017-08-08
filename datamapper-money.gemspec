@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
-  
+
   gem.add_dependency 'dm-core', '~> 1.2.0'
-  gem.add_dependency 'money', '~> 5.0.0'
+  gem.add_dependency 'money', '~> 6.9.0'
 end
