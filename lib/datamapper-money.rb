@@ -3,7 +3,7 @@ require 'money'
 require 'dm-core'
 
 module DataMapper
-  module Money
+  module DMoney
     def self.included(model)
       model.extend ClassMethods
     end
